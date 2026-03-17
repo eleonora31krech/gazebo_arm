@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
+  
+  <!-- Include Franka description -->
+  <xacro:include filename="$(find franka_description)/robots/panda/panda.urdf.xacro"/>
+  
+  <!-- Gazebo ros2_control plugin -->
+  <gazebo>
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <robot_param>robot_description</robot_param>
+      <robot_param_node>robot_state_publisher</robot_param_node>
+      <parameters>$(find panda_gz_moveit)/config/panda_controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <!-- ros2_control -->
+  <ros2_control name="panda_gz" type="system">
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+    
+    <!-- Arm joints -->
+    <joint name="panda_joint1">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="panda_joint2">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">-0.785</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="panda_joint3">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="panda_joint4">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">-2.356</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="panda_joint5">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="panda_joint6">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">1.571</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="panda_joint7">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.785</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <!-- Gripper joints -->
+    <joint name="panda_finger_joint1">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.04</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="panda_finger_joint2">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.04</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    
+  </ros2_control>
+
+  <!-- Gazebo materials for visualization -->
+  <gazebo reference="panda_link0">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  <gazebo reference="panda_link1">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  <gazebo reference="panda_link2">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  <gazebo reference="panda_link3">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  <gazebo reference="panda_link4">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  <gazebo reference="panda_link5">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  <gazebo reference="panda_link6">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  
+  <gazebo reference="panda_link7">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  <gazebo reference="panda_hand">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+</robot>
