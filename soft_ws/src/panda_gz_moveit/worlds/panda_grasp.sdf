@@ -52,20 +52,20 @@
 
     <!-- Table -->
     <model name="table">
-      <static>true</static>
+      <static>false</static>
       <pose>0 0 0.35 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
             <box>
-              <size>1.2 0.8 0.7</size>
+              <size>1.5 2.8 0.7</size>
             </box>
           </geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <box>
-              <size>1.2 0.8 0.7</size>
+              <size>1.5 2.8 0.7</size>
             </box>
           </geometry>
           <material>
@@ -76,31 +76,173 @@
       </link>
     </model>
 
-    <!-- Conveyor -->
-    <model name="conveyor">
-      <static>true</static>
-      <pose>0.63 0 0.74 0 0 1.5708</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>1.5 0.4 0.08</size>
-            </box>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>1.5 0.4 0.08</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0.3 0.3 0.3 1</ambient>
-            <diffuse>0.3 0.3 0.3 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
+<!-- Collection box -->
+
+<model name="collection_box">
+  <static>false</static>
+  <pose>0.29 -0.35 0.74 0 0 0</pose>
+  <link name="link">
+
+    <collision name="bottom_collision">
+      <pose>0 0 0 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.20 0.20 0.02</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="bottom_visual">
+      <pose>0 0 0 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.20 0.20 0.02</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.6 0.4 0.2 1</ambient>
+        <diffuse>0.6 0.4 0.2 1</diffuse>
+      </material>
+    </visual>
+
+    <collision name="wall1_collision">
+      <pose>0.09 0 0.05 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.02 0.20 0.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="wall1_visual">
+      <pose>0.09 0 0.05 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.02 0.20 0.10</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.7 0.5 0.3 1</ambient>
+        <diffuse>0.7 0.5 0.3 1</diffuse>
+      </material>
+    </visual>
+
+    <collision name="wall2_collision">
+      <pose>-0.09 0 0.05 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.02 0.20 0.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="wall2_visual">
+      <pose>-0.09 0 0.05 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.02 0.20 0.10</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.7 0.5 0.3 1</ambient>
+        <diffuse>0.7 0.5 0.3 1</diffuse>
+      </material>
+    </visual>
+
+    <collision name="wall3_collision">
+      <pose>0 0.09 0.05 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.20 0.02 0.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="wall3_visual">
+      <pose>0 0.09 0.05 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.20 0.02 0.10</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.7 0.5 0.3 1</ambient>
+        <diffuse>0.7 0.5 0.3 1</diffuse>
+      </material>
+    </visual>
+
+    <collision name="wall4_collision">
+      <pose>0 -0.09 0.05 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.20 0.02 0.10</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="wall4_visual">
+      <pose>0 -0.09 0.05 0 0 0</pose>
+      <geometry>
+        <box>
+          <size>0.20 0.02 0.10</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.7 0.5 0.3 1</ambient>
+        <diffuse>0.7 0.5 0.3 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+    <!-- Conveyor 1 -->
+<model name="conveyor_1">
+  <static>true</static>
+  <pose>0.63 -0.11 0.74 0 0 1.5708</pose>
+  <link name="link">
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>6.1 0.4 0.08</size>
+        </box>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>100.0</mu>
+            <mu2>100.0</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <kp>1000000</kp>
+            <kd>1000</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>6.1 0.4 0.08</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.3 0.3 0.3 1</ambient>
+        <diffuse>0.3 0.3 0.3 1</diffuse>
+      </material>
+    </visual>
+    <inertial>
+      <mass>10.0</mass>
+      <inertia>
+        <ixx>1.0</ixx>
+        <iyy>1.0</iyy>
+        <izz>1.0</izz>
+      </inertia>
+    </inertial>
+  </link>
+  <plugin filename="gz-sim-track-controller-system"
+          name="gz::sim::systems::TrackController">
+    <link>link</link>
+    <velocity_topic>/conveyor_1/cmd_vel</velocity_topic>
+    <track_orientation>0 0 0</track_orientation>
+  </plugin>
+</model>
 
     <!-- Green Cube -->
     <model name="green_cube">
@@ -161,6 +303,20 @@
           <geometry>
             <box><size>0.05 0.05 0.05</size></box>
           </geometry>
+                    <surface>
+  <friction>
+    <ode>
+      <mu>50.0</mu>
+      <mu2>50.0</mu2>
+    </ode>
+  </friction>
+  <contact>
+    <ode>
+      <kp>100000</kp>
+      <kd>100</kd>
+    </ode>
+  </contact>
+</surface>
         </collision>
         <visual name="visual">
           <geometry>
@@ -176,7 +332,7 @@
 
     <!-- Blue Cube -->
     <model name="blue_cube">
-      <pose>0.65 -0.2 0.82 0 0 0</pose>
+      <pose>0.65 -0.9 0.82 0 0 0</pose>
       <link name="link">
         <inertial>
           <mass>0.1</mass>
@@ -190,6 +346,20 @@
           <geometry>
             <box><size>0.05 0.05 0.05</size></box>
           </geometry>
+                    <surface>
+  <friction>
+    <ode>
+      <mu>50.0</mu>
+      <mu2>50.0</mu2>
+    </ode>
+  </friction>
+  <contact>
+    <ode>
+      <kp>100000</kp>
+      <kd>100</kd>
+    </ode>
+  </contact>
+</surface>
         </collision>
         <visual name="visual">
           <geometry>
@@ -202,11 +372,24 @@
         </visual>
       </link>
     </model>
+<include>
+      <uri>
+        https://fuel.gazebosim.org/1.0/OpenRobotics/models/Monkey Wrench
+      </uri>
+      <name>monkey_wrench</name>
+      <pose>0.65 -1.2 0.82 0 0 0</pose>
+    </include>
 
+<include>
+      <uri>
+https://fuel.gazebosim.org/1.0/OpenRobotics/models/Coke Can      </uri>
+      <name>coke</name>
+      <pose>0.65 -1.4 0.82 0 0 0</pose>
+    </include>
     <!-- Camera -->
     <model name="overhead_rgbd_camera">
       <static>true</static>
-      <pose>0.63 0.0 1.50 0 1.5708 0</pose>
+      <pose>0.63 -0.8 1.50 0 1.5708 0</pose>
       <link name="link">
         <sensor name="rgbd_camera" type="rgbd_camera">
           <camera>
